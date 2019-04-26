@@ -1,8 +1,8 @@
 name: network_pos_printer
 description: A wrapper to send texts (with simple styles like underline, bold, justification, etc.) to a network POS Printer
 version: 0.0.1
-author:
-homepage:
+author: Benoit Verstraete <ben.verstraete@gmail.com>
+homepage: https://github.com/benoitverstraete/network_pos_printer
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
