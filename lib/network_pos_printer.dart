@@ -3,18 +3,18 @@ library network_pos_printer;
 import 'dart:io';
 
 
-enum NetworkPrintUnderline { none, single_weight, double_weight }
-enum NetworkPrintJustification { left, center, right }
+enum NetworkPOSPrinterUnderline { none, single_weight, double_weight }
+enum NetworkPOSPrinterJustification { left, center, right }
 
-class NetworkPrinter {
+class NetworkPOSPrinter {
 
   Socket socket;
 
-  NetworkPrinter({this.socket});
+  NetworkPOSPrinter({this.socket});
 
-  static Future<NetworkPrinter> connect(host, int port, {sourceAddress, Duration timeout}) {
+  static Future<NetworkPOSPrinter> connect(host, int port, {sourceAddress, Duration timeout}) {
     return Socket.connect(host, port).then((socket) {
-      return NetworkPrinter(socket: socket);
+      return NetworkPOSPrinter(socket: socket);
     });
   }
 
@@ -58,19 +58,19 @@ class NetworkPrinter {
     socket.writeAll(['\x1D', 'B', inverse ? 1 : 0]);
   }
 
-  void setUnderline(NetworkPrintUnderline underline) {
+  void setUnderline(NetworkPOSPrinterUnderline underline) {
     int value;
 
     switch (underline) {
-      case NetworkPrintUnderline.none:
+      case NetworkPOSPrinterUnderline.none:
         value = 0;
         break;
 
-      case NetworkPrintUnderline.single_weight:
+      case NetworkPOSPrinterUnderline.single_weight:
         value = 1;
         break;
 
-      case NetworkPrintUnderline.double_weight:
+      case NetworkPOSPrinterUnderline.double_weight:
         value = 2;
         break;
 
@@ -82,19 +82,19 @@ class NetworkPrinter {
     socket.writeAll(['\x1B', '-', value]);
   }
 
-  void setJustification(NetworkPrintJustification justification) {
+  void setJustification(NetworkPOSPrinterJustification justification) {
     int value;
 
     switch (justification) {
-      case NetworkPrintJustification.left:
+      case NetworkPOSPrinterJustification.left:
         value = 0;
         break;
 
-      case NetworkPrintJustification.center:
+      case NetworkPOSPrinterJustification.center:
         value = 1;
         break;
 
-      case NetworkPrintJustification.right:
+      case NetworkPOSPrinterJustification.right:
         value = 2;
         break;
 
@@ -109,8 +109,8 @@ class NetworkPrinter {
   void resetToDefault() {
     setInverse(false);
     setBold(false);
-    setUnderline(NetworkPrintUnderline.none);
-    setJustification(NetworkPrintJustification.left);
+    setUnderline(NetworkPOSPrinterUnderline.none);
+    setJustification(NetworkPOSPrinterJustification.left);
   }
 
 //  void beep() {

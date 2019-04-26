@@ -6,6 +6,10 @@ Here an example on how to send texts and cut the ticket:
 ```
     NetworkPrinter.connect('192.168.81.81', 9100).then((printer) {
       for (int i = 1; i <= 10; i++) {
+        printer.setBold(i % 2 == 0);
+        printer.setInverse(i % 2 == 0);
+        printer.setUnderline(i % 2 == 0 ? NetworkPrintUnderline.none : NetworkPrintUnderline.singleweight);
+        printer.setJustification(i % 2 == 0 ? NetworkPrintJustification.left : NetworkPrintJustification.center);
         printer.writeLine('test $i');
       }
 
@@ -17,11 +21,7 @@ Here an example on how to send texts and cut the ticket:
       printer.cut();
 
       printer.close().then((v) {
-        print('printer closed ($v)');
-
         printer.destroy();
-
-        print('socket destroyed');
       });
     }).catchError((error) {
       print('error : ${error}');
