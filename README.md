@@ -43,6 +43,8 @@ Here an example on how to send texts and cut the ticket:
 
 Some printers will not accept NetworkPOSPrinterUnderline.double_weight, only a single weight will be printed.
 
+TODO: method documentation
+
 ## Getting Started
 
 This project is a starting point for a Dart

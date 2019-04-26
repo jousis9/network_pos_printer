@@ -2,17 +2,16 @@ library network_pos_printer;
 
 import 'dart:io';
 
-
 enum NetworkPOSPrinterUnderline { none, single_weight, double_weight }
 enum NetworkPOSPrinterJustification { left, center, right }
 
 class NetworkPOSPrinter {
-
   Socket socket;
 
   NetworkPOSPrinter({this.socket});
 
-  static Future<NetworkPOSPrinter> connect(host, int port, {sourceAddress, Duration timeout}) {
+  static Future<NetworkPOSPrinter> connect(host, int port,
+      {sourceAddress, Duration timeout}) {
     return Socket.connect(host, port).then((socket) {
       return NetworkPOSPrinter(socket: socket);
     });
