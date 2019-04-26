@@ -2,16 +2,29 @@
 
 A wrapper to send texts (with simple styles like underline, bold, justification, etc.) to a network POS Printer.
 
+This package let you send the data to the printer without previewing a document (it is usually used as a receipt print).
+
 Here an example on how to send texts and cut the ticket:
 ```
-    NetworkPrinter.connect('192.168.81.81', 9100).then((printer) {
-      for (int i = 1; i <= 10; i++) {
-        printer.setBold(i % 2 == 0);
-        printer.setInverse(i % 2 == 0);
-        printer.setUnderline(i % 2 == 0 ? NetworkPrintUnderline.none : NetworkPrintUnderline.singleweight);
-        printer.setJustification(i % 2 == 0 ? NetworkPrintJustification.left : NetworkPrintJustification.center);
-        printer.writeLine('test $i');
-      }
+    NetworkPOSPrinter.connect('192.168.81.80', 9100).then((printer) {
+
+      printer.setBold(true);
+      printer.writeLine('Test bold');
+
+      printer.resetToDefault();
+
+      printer.setInverse(true);
+      printer.writeLine('Test inverse');
+
+      printer.resetToDefault();
+
+      printer.setUnderline(NetworkPOSPrinterUnderline.single_weight);
+      printer.writeLine('Test underline');
+
+      printer.resetToDefault();
+
+      printer.setJustification(NetworkPOSPrinterJustification.center);
+      printer.writeLine('Test justification');
 
       // space blanks before cut
       for (int i = 0; i <= 5; i++) {
@@ -24,9 +37,11 @@ Here an example on how to send texts and cut the ticket:
         printer.destroy();
       });
     }).catchError((error) {
-      print('error : ${error}');
+      print('error : $error');
     });
 ```
+
+Some printers will not accept NetworkPOSPrinterUnderline.double_weight, only a single weight will be printed.
 
 ## Getting Started
 
