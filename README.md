@@ -1,8 +1,8 @@
 # network_pos_printer
 
-A wrapper to send texts (with simple styles like underline, bold, justification, etc.) to a network POS Printer.
+A wrapper to send texts silently (with simple styles like underline, bold, justification, etc.) to a network POS printer.
 
-This package let you send the data to the printer without previewing a document (it is usually used as a receipt print).
+It lets you send the data to the printer without previewing a document (it is usually used as a receipt print).
 
 Here an example on how to send texts and cut the ticket:
 ```
