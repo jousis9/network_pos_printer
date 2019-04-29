@@ -1,8 +1,9 @@
 library network_pos_printer;
 
 import 'dart:io';
+import 'dart:math';
 
-enum NetworkPOSPrinterUnderline { none, single_weight, double_weight }
+enum NetworkPOSPrinterUnderline { none, single, double }
 enum NetworkPOSPrinterJustification { left, center, right }
 
 class NetworkPOSPrinter {
@@ -10,11 +11,20 @@ class NetworkPOSPrinter {
 
   NetworkPOSPrinter({this.socket});
 
+  String _esc = '\x1B';
+  String _gs = '\x1D';
+
   static Future<NetworkPOSPrinter> connect(host, int port,
       {sourceAddress, Duration timeout}) {
-    return Socket.connect(host, port).then((socket) {
+    return Socket.connect(host, port,
+            sourceAddress: sourceAddress, timeout: timeout)
+        .then((socket) {
       return NetworkPOSPrinter(socket: socket);
     });
+  }
+
+  void writeAll(Iterable objects, [String separator = '']) {
+    socket.writeAll(objects, separator);
   }
 
   void writeLine([Object obj = '']) {
@@ -34,11 +44,11 @@ class NetworkPOSPrinter {
 //  }
 
   void cut() {
-    socket.write('\x1B@\x1DV1');
+    socket.write('${_esc}@${_gs}V1');
   }
 
   void feed(int feed) {
-    socket.writeAll(['\x1B', 'd', feed]);
+    writeAll([_esc, 'd', feed]);
   }
 
   Future<dynamic> flush() {
@@ -50,11 +60,17 @@ class NetworkPOSPrinter {
   }
 
   void setBold(bool bold) {
-    socket.writeAll(['\x1B', 'E', bold ? 1 : 0]);
+    writeAll([_esc, 'E', bold ? 1 : 0]);
   }
 
   void setInverse(bool inverse) {
-    socket.writeAll(['\x1D', 'B', inverse ? 1 : 0]);
+    writeAll([_gs, 'B', inverse ? 1 : 0]);
+  }
+
+  void setTextSize(int width, int height) {
+    var c = pow(2, 4) * (width - 1) + (height - 1);
+
+    writeAll([_gs, '!', c]);
   }
 
   void setUnderline(NetworkPOSPrinterUnderline underline) {
@@ -65,11 +81,11 @@ class NetworkPOSPrinter {
         value = 0;
         break;
 
-      case NetworkPOSPrinterUnderline.single_weight:
+      case NetworkPOSPrinterUnderline.single:
         value = 1;
         break;
 
-      case NetworkPOSPrinterUnderline.double_weight:
+      case NetworkPOSPrinterUnderline.double:
         value = 2;
         break;
 
@@ -78,7 +94,7 @@ class NetworkPOSPrinter {
         break;
     }
 
-    socket.writeAll(['\x1B', '-', value]);
+    writeAll([_esc, '-', value]);
   }
 
   void setJustification(NetworkPOSPrinterJustification justification) {
@@ -102,14 +118,11 @@ class NetworkPOSPrinter {
         break;
     }
 
-    socket.writeAll(['\x1B', 'a', value]);
+    writeAll([_esc, 'a', value]);
   }
 
   void resetToDefault() {
-    setInverse(false);
-    setBold(false);
-    setUnderline(NetworkPOSPrinterUnderline.none);
-    setJustification(NetworkPOSPrinterJustification.left);
+    writeAll([_esc, '@']);
   }
 
 //  void beep() {

@@ -2,7 +2,6 @@ import 'package:network_pos_printer/network_pos_printer.dart';
 
 main(List<String> arguments) {
   NetworkPOSPrinter.connect('192.168.81.80', 9100).then((printer) {
-
     printer.setBold(true);
     printer.writeLine('Test bold');
 
@@ -13,7 +12,7 @@ main(List<String> arguments) {
 
     printer.resetToDefault();
 
-    printer.setUnderline(NetworkPOSPrinterUnderline.single_weight);
+    printer.setUnderline(NetworkPOSPrinterUnderline.single);
     printer.writeLine('Test underline');
 
     printer.resetToDefault();
