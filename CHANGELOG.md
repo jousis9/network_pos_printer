@@ -1,3 +1,7 @@
+## [0.1.2] - 29th April 2019
+
+Update README.md
+
 ## [0.1.1] - 29th April 2019
 
 * setTextSize added
