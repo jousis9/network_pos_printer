@@ -50,7 +50,7 @@ class NetworkPOSPrinter {
 //  }
 
   void cut() {
-    socket.write('${_esc}@${_gs}V1');
+    socket.write('${_esc.toString()}@${_gs}V1');
   }
 
   void feed(int feed) {
