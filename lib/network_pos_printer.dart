@@ -35,6 +35,12 @@ class NetworkPOSPrinter {
     socket.write(obj);
   }
 
+  void writeLines(Iterable objects) {
+    for (var o in objects) {
+      writeLine(o);
+    }
+  }
+
 //  void writeLeftRight(String left, String right) {
 //    setJustification(NetworkPrintJustification.left);
 //    write(left);

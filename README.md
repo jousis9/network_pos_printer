@@ -1,5 +1,7 @@
 # network_pos_printer
 
+[![Pub Package](https://img.shields.io/pub/v/network_pos_printer.svg?style=flat-square)](https://pub.dartlang.org/packages/network_pos_printer)
+
 A dart/flutter package to send texts silently (with simple styles like underline, bold, justification, etc.) to a network POS printer.
 
 It lets you send the data to the printer without previewing a document (it is usually used as a receipt print).
