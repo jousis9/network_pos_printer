@@ -1,3 +1,7 @@
+## [0.1.4] - 22th May 2019
+
+* README updated
+
 ## [0.1.3] - 29th April 2019
 
 * License added

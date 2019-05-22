@@ -14,11 +14,8 @@ class NetworkPOSPrinter {
   String _esc = '\x1B';
   String _gs = '\x1D';
 
-  static Future<NetworkPOSPrinter> connect(host, int port,
-      {sourceAddress, Duration timeout}) {
-    return Socket.connect(host, port,
-            sourceAddress: sourceAddress, timeout: timeout)
-        .then((socket) {
+  static Future<NetworkPOSPrinter> connect(host, int port, {sourceAddress, Duration timeout}) {
+    return Socket.connect(host, port, sourceAddress: sourceAddress, timeout: timeout).then((socket) {
       return NetworkPOSPrinter(socket: socket);
     });
   }
@@ -50,7 +47,7 @@ class NetworkPOSPrinter {
 //  }
 
   void cut() {
-    socket.write('${_esc.toString()}@${_gs}V1');
+    write('${_esc.toString()}@${_gs}V1');
   }
 
   void feed(int feed) {

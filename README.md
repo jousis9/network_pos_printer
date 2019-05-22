@@ -7,7 +7,7 @@
         <img src="https://img.shields.io/badge/Platform-Flutter-yellow.svg" alt="Platform" />
     </a>
   
-   [![Pub Package](https://img.shields.io/pub/v/network_pos_printer.svg)](https://pub.dartlang.org/packages/network_pos_printer)
+   [![Pub Package](https://img.shields.io/pub/v/network_pos_printer.svg)](https://pub.dev/packages/network_pos_printer)
 </div>
 <br />
 
@@ -53,4 +53,11 @@ Here an example on how to send texts and cut the ticket:
 
 Some printers will not accept NetworkPOSPrinterUnderline.double, only a single weight will be printed.
 
-TODO: method documentation
+## TODO
+
+* method documentation
+
+## Support
+If this package was helpful to you in delivering on your project or you just wanna to support this project, a cup of tea would be highly appreciated ;-)
+
+[![Buy me a tea](https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png)](https://buymeacoff.ee/benverstraete)
