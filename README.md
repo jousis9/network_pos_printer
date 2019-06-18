@@ -1,6 +1,6 @@
 # network_pos_printer
 
-<div align="center"><p>A dart/flutter package to send texts silently (with simple styles like underline, bold, justification, etc.) to a network POS printer.</p></div><br>
+<div align="center"><p>A dart/flutter package to send texts silently (with simple styles like underline, bold, justification, etc.) to a network ESC/POS printer.</p></div><br>
 
 <div align="center">
 	<a href="https://flutter.io">
@@ -12,7 +12,7 @@
 <br />
 
 
-It lets you send the data to the printer without previewing a document (it is usually used as a receipt print).
+It lets you send the data to the printer without previewing a document (usually thermal printers), with the ESC/POS script.
 
 Here an example on how to send texts and cut the ticket:
 ```
