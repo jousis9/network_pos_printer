@@ -1,3 +1,13 @@
+## [1.1.4] - 19th June 2019
+
+* BREAKING CHANGE : setTextSize signature (from int to NetworkPOSTextSize)
+* BREAKING CHANGE : writeLine signature (now without default value)
+* writeLineWithStyle() method added to handle styles more easily
+* setFont method added
+* Update README
+* Update example
+* import dart:math removed
+
 ## [0.1.5] - [0.1.6] - 18th June 2019
 
 * Upgrade version of Dart

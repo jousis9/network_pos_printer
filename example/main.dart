@@ -2,6 +2,15 @@ import 'package:network_pos_printer/network_pos_printer.dart';
 
 main(List<String> arguments) {
   NetworkPOSPrinter.connect('192.168.81.80', 9100).then((printer) {
+    printer.writeLineWithStyle('Test with style'.toUpperCase(),
+        style: NetworkPOSPrinterStyle(
+          justification: NetworkPOSPrinterJustification.center,
+          width: NetworkPOSPrinterTextSize.size2,
+          height: NetworkPOSPrinterTextSize.size2,
+          font: NetworkPOSPrinterFont.fontB,
+        ),
+        linesAfter: 1);
+
     printer.setBold(true);
     printer.writeLine('Test bold');
 
@@ -20,10 +29,13 @@ main(List<String> arguments) {
     printer.setJustification(NetworkPOSPrinterJustification.center);
     printer.writeLine('Test justification');
 
+    printer.resetToDefault();
+
+    printer.setFont(NetworkPOSPrinterFont.fontB);
+    printer.writeLine('Test font');
+
     // space blanks before cut
-    for (int i = 0; i <= 5; i++) {
-      printer.writeLine();
-    }
+    printer.writeLines(List.filled(5, ''));
 
     printer.cut();
 

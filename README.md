@@ -16,39 +16,52 @@ It lets you send the data to the printer without previewing a document (usually 
 
 Here an example on how to send texts and cut the ticket:
 ```
-    NetworkPOSPrinter.connect('192.168.81.80', 9100).then((printer) {
+  NetworkPOSPrinter.connect('192.168.81.80', 9100).then((printer) {
 
-      printer.setBold(true);
-      printer.writeLine('Test bold');
+    printer.writeLineWithStyle('Test with style'.toUpperCase(),
+        style: NetworkPOSPrinterStyle(
+          justification: NetworkPOSPrinterJustification.center,
+          width: NetworkPOSPrinterTextSize.size2,
+          height: NetworkPOSPrinterTextSize.size2,
+          font: NetworkPOSPrinterFont.fontB,
+        ),
+        linesAfter: 1);
 
-      printer.resetToDefault();
 
-      printer.setInverse(true);
-      printer.writeLine('Test inverse');
+    printer.setBold(true);
+    printer.writeLine('Test bold');
 
-      printer.resetToDefault();
+    printer.resetToDefault();
 
-      printer.setUnderline(NetworkPOSPrinterUnderline.single);
-      printer.writeLine('Test underline');
+    printer.setInverse(true);
+    printer.writeLine('Test inverse');
 
-      printer.resetToDefault();
+    printer.resetToDefault();
 
-      printer.setJustification(NetworkPOSPrinterJustification.center);
-      printer.writeLine('Test justification');
+    printer.setUnderline(NetworkPOSPrinterUnderline.single);
+    printer.writeLine('Test underline');
 
-      // space blanks before cut
-      for (int i = 0; i <= 5; i++) {
-        printer.writeLine();
-      }
+    printer.resetToDefault();
 
-      printer.cut();
+    printer.setJustification(NetworkPOSPrinterJustification.center);
+    printer.writeLine('Test justification');
 
-      printer.close().then((v) {
-        printer.destroy();
-      });
-    }).catchError((error) {
-      print('error : $error');
+    printer.resetToDefault();
+
+    printer.setFont(NetworkPOSPrinterFont.fontB);
+    printer.writeLine('Test font');
+
+    // space blanks before cut
+    printer.writeLines(List.filled(5, ''));
+
+    printer.cut();
+
+    printer.close().then((v) {
+      printer.destroy();
     });
+  }).catchError((error) {
+    print('error : $error');
+  });
 ```
 
 Some printers will not accept NetworkPOSPrinterUnderline.double, only a single weight will be printed.
