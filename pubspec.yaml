@@ -1,6 +1,6 @@
 name: network_pos_printer
 description: A library to send texts silently (with simple styles like underline, bold, justification, etc.) to a network ESC/POS printer (usually thermal)
-version: 1.1.4
+version: 1.1.7
 author: Benoit Verstraete <ben.verstraete@gmail.com>
 homepage: https://github.com/benoitverstraete/network_pos_printer
 
@@ -10,6 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  hex: ^0.1.2
 
 dev_dependencies:
   flutter_test:

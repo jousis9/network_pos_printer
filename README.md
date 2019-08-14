@@ -27,6 +27,21 @@ Here an example on how to send texts and cut the ticket:
         ),
         linesAfter: 1);
 
+    // total width of columns must be equal to 12
+    printer.writeRow(<NetworkPOSColumn>[
+      NetworkPOSColumn(
+        text: 'left align',
+        width: 6,
+        style: NetworkPOSPrinterStyle(
+            bold: true, justification: NetworkPOSPrinterJustification.left),
+      ),
+      NetworkPOSColumn(
+        text: 'right align',
+        width: 6,
+        style: NetworkPOSPrinterStyle(
+            bold: true, justification: NetworkPOSPrinterJustification.right),
+      ),
+    ]);
 
     printer.setBold(true);
     printer.writeLine('Test bold');

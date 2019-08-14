@@ -1,3 +1,9 @@
+## [1.1.5] - [1.1.7] - 14th August 2019
+
+* writeRow(List of NetworkPOSColumn) method added
+* renaming, cleaning and refactoring of internal code
+* example and README updated
+
 ## [1.1.4] - 19th June 2019
 
 * BREAKING CHANGE : setTextSize signature (from int to NetworkPOSTextSize)
