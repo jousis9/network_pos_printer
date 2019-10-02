@@ -1,3 +1,7 @@
+## [1.1.8] - 2 October 2019
+
+* NetworkPOSColumn width limitation
+
 ## [1.1.5] - [1.1.7] - 14th August 2019
 
 * writeRow(List of NetworkPOSColumn) method added
